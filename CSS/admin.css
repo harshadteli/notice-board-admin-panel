@@ -3,14 +3,16 @@
     margin: 0;
     padding: 0;
 }
-body {
+body 
+{
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7f6;
     color: #333;
     line-height: 1.6;
     padding: 10px;
 }
-.form-container, .management-container {
+.form-container, .management-container 
+{
     background: #fff;
     padding: 20px; 
     border-radius: 8px;
@@ -19,28 +21,33 @@ body {
     max-width: 900px; 
     margin: 20px auto;
 }
-h2 {
+h2 
+{
     text-align: center;
     color: #007bff;
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
-form {
+form
+{
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-input, textarea, select {
+input, textarea, select
+{
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem; 
 }
-textarea {
+textarea 
+{
     height: 300px;
 }
-button {
+button 
+{
     background-color: #28a745;
     color: white;
     padding: 12px;
@@ -52,22 +59,28 @@ button {
     transition: background-color 0.3s ease;
     flex-shrink: 0; 
 }
-button:hover {
+button:hover 
+{
     background-color: #218838;
 }
-.primary-btn {
+.primary-btn 
+{
     background-color: #007bff;
 }
-.primary-btn:hover {
+.primary-btn:hover 
+{
     background-color: #0056b3;
 }
-#logout-btn {
+#logout-btn 
+{
     background-color: #dc3545;
 }
-#logout-btn:hover {
+#logout-btn:hover 
+{
     background-color: #c82333;
 }
-.management-container header {
+.management-container header 
+{
     display: flex;
     flex-direction: column; 
     gap: 10px;
@@ -76,20 +89,24 @@ button:hover {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
 }
-.management-container header h2 {
+.management-container header h2 
+{
     margin: 0;
     font-size: 1.4rem;
     text-align: left;
 }
-.header-buttons {
+.header-buttons 
+{
     display: flex;
     gap: 10px;
     width: 100%; 
 }
-.header-buttons button {
+.header-buttons button 
+{
     flex-grow: 1; 
 }
-.notice-item {
+.notice-item 
+{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -100,18 +117,22 @@ button:hover {
     border-left: 5px solid #007bff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-.notice-info {
+.notice-info 
+{
     width: 100%;
     margin-bottom: 10px;
 }
-.notice-content-text {
+.notice-content-text 
+{
     white-space: pre-wrap;
     margin-bottom: 10px; 
 }
-.delete-btn {
+.delete-btn 
+{
     width: 100%; 
 }
-.modal-overlay {
+.modal-overlay 
+{
     position: fixed;
     top: 0;
     left: 0;
@@ -123,7 +144,8 @@ button:hover {
     align-items: center;
     z-index: 1000;
 }
-.modal-content {
+.modal-content 
+{
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -133,14 +155,16 @@ button:hover {
     overflow-y: auto; 
     animation: fadeIn 0.3s ease-out;
 }
-.modal-header {
+.modal-header 
+{
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #eee;
     margin-bottom: 15px;
 }
-.close-btn {
+.close-btn 
+{
     background: none;
     color: #999;
     border: none;
@@ -148,37 +172,48 @@ button:hover {
     padding: 5px;
     line-height: 1;
 }
-@media (min-width: 600px) {
-    body {
+@media (min-width: 600px) 
+{
+    body 
+    {
         padding: 20px;
     }
-    .form-container, .management-container {
+    .form-container, .management-container 
+    {
         padding: 30px;
         width: 90%;
     }
-    .management-container header {
+    .management-container header 
+    {
         flex-direction: row;
         align-items: center;
     }
-    .header-buttons {
+    .header-buttons 
+    {
         width: auto;
     }
-    .header-buttons button {
+    .header-buttons button 
+    {
         flex-grow: 0;
     }
-    .notice-item {
+    .notice-item 
+    {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
     }
-    .notice-info {
+    .notice-info 
+    {
         width: 80%; 
         margin-bottom: 0;
     }
-    .delete-btn {
+    .delete-btn 
+    {
         width: auto; 
     }
-    .modal-content {
+    .modal-content 
+    {
         max-width: 500px;
     }
 }
+
