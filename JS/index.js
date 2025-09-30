@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyo1cib-xR4kkAAFOJUasC8T7I72OdCIGA6wHWZ6VirWbu9QbVo2NUtO6mhaUxpTyKPpQ/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySlg852_P770a_mBtiS610WtIbtcFe8f3uLk2hYoXb30FqW6E700My6vae977zGgLurw/exec';
 const loginForm = document.getElementById('login-form');
 const loginMessage = document.getElementById('login-message');
 const addNoticeForm = document.getElementById('add-notice-form');
@@ -17,6 +17,10 @@ loadingSpinner.id = 'loading-spinner';
 loadingSpinner.className = 'spinner';
 document.body.appendChild(loadingSpinner);
 let currentUser = null; 
+function formatContentForHtml(text) {
+    if (typeof text !== 'string') return text;
+    return text.replace(/(\r\n|\r|\n)/g, '<br>');
+}
 function showSpinner() {
     loadingSpinner.style.display = 'block'; 
 }
@@ -37,18 +41,23 @@ function hideAddNoticeForm() {
     addNoticeModal.style.display = 'none';
     addNoticeForm.reset(); 
 }
-async function fetchFacultyNotices() {
+async function fetchFacultyNotices() 
+    {
     noticesList.innerHTML = '<p>Loading notices...</p>';
     showSpinner(); 
-    try {
+    try 
+    {
         const response = await fetch(`${SCRIPT_URL}?action=getNotices`);
         const notices = await response.json();
-        if (notices.length === 0 || notices.error) {
+        if (notices.length === 0 || notices.error) 
+        {
             noticesList.innerHTML = '<p>No notices have been posted yet.</p>';
         } 
-        else {
+        else 
+        {
             noticesList.innerHTML = '';
             notices.forEach(notice => {
+                const displayContent = formatContentForHtml(notice.content);
                 const noticeItem = document.createElement('div');
                 noticeItem.classList.add('notice-item');
                 noticeItem.innerHTML = `
@@ -62,22 +71,30 @@ async function fetchFacultyNotices() {
                 noticesList.appendChild(noticeItem);
             });
         }
-    } catch (error) {
+    } 
+    catch (error) 
+    {
         console.error('Error fetching faculty notices:', error);
         noticesList.innerHTML = '<p class="error-message">Failed to load notices.</p>';
-    } finally {
+    } 
+    finally 
+    {
         hideSpinner(); 
     }
 }
-if (localStorage.getItem('isLoggedIn') === 'true') {
-    try {
+if (localStorage.getItem('isLoggedIn') === 'true') 
+    {
+    try 
+    {
         currentUser = JSON.parse(localStorage.getItem('currentUser'));
     } 
-    catch (e) {
+    catch (e) 
+    {
         console.error("Failed to parse currentUser from localStorage", e);
         localStorage.removeItem('isLoggedIn');
     }
-    if (currentUser) {
+    if (currentUser) 
+    {
         showManagementPanel();
         fetchFacultyNotices();
     }
@@ -88,13 +105,14 @@ loginForm.addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const params = new URLSearchParams({ action: 'login', name, email, password });
-
     loginMessage.textContent = 'Verifying credentials...';
     showSpinner(); 
-    try {
+    try 
+    {
         const response = await fetch(`${SCRIPT_URL}?${params.toString()}`);
         const result = await response.json();
-        if (result.success) {
+        if (result.success) 
+        {
             loginMessage.textContent = 'Login successful!';
             loginMessage.className = 'message success';
             currentUser = result.user; 
@@ -103,16 +121,20 @@ loginForm.addEventListener('submit', async (e) => {
             showManagementPanel();
             fetchFacultyNotices();
         } 
-        else {
+        else 
+        {
             loginMessage.textContent = 'Login failed: ' + (result.error || 'Invalid credentials or failed registration.');
             loginMessage.className = 'message error';
         }
     } 
-    catch (error) {
+    catch (error) 
+    {
         console.error('Login error:', error);
         loginMessage.textContent = 'A network error occurred. Please try again later.';
         loginMessage.className = 'message error';
-    } finally {
+    } 
+    finally 
+    {
         hideSpinner(); 
     }
 });
@@ -131,10 +153,12 @@ addNoticeForm.addEventListener('submit', async (e) => {
     });
     addNoticeMessage.textContent = 'Adding notice...';
     showSpinner(); 
-    try {
+    try 
+    {
         const response = await fetch(`${SCRIPT_URL}?${params.toString()}`, { method: 'POST' });
         const result = await response.json();
-        if (result.success) {
+        if (result.success) 
+        {
             addNoticeMessage.textContent = 'Notice added successfully!';
             addNoticeMessage.className = 'message success';
             
@@ -142,43 +166,57 @@ addNoticeForm.addEventListener('submit', async (e) => {
                 hideAddNoticeForm(); 
             }, 1000); 
 
-            fetchFacultyNotices();
+            fetchFacultyNotices(); 
         } 
-        else {
+        else 
+        {
             addNoticeMessage.textContent = 'Failed to add notice: ' + (result.error || 'Unknown error.');
             addNoticeMessage.className = 'message error';
         }
     } 
-    catch (error) {
+    catch (error) 
+    {
         console.error('Add notice error:', error);
         addNoticeMessage.textContent = 'An error occurred. Please try again.';
         addNoticeMessage.className = 'message error';
-    } finally {
+    } 
+    finally 
+    {
         hideSpinner(); 
     }
 });
 noticesList.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('delete-btn')) {
+    if (e.target.classList.contains('delete-btn')) 
+        {
         const noticeId = e.target.dataset.id;
-        if (confirm('Are you sure you want to delete this notice?')) {
+
+        if (confirm('Are you sure you want to delete this notice?')) 
+            {
             const params = new URLSearchParams({ action: 'deleteNotice', id: noticeId });
             showSpinner(); 
-            try {
+
+            try 
+            {
                 const response = await fetch(`${SCRIPT_URL}?${params.toString()}`, { method: 'POST' });
                 const result = await response.json();
-                if (result.success) {
+
+                if (result.success) 
+                {
                     alert('Notice deleted successfully!');
-                    fetchFacultyNotices();
+                    fetchFacultyNotices(); 
                 } 
-                else {
+                else 
+                {
                     alert('Failed to delete notice: ' + (result.error || 'Unknown error.'));
                 }
             } 
-                catch (error) {
+            catch (error) 
+            {
                 console.error('Delete notice error:', error);
                 alert('An error occurred. Please try again.');
             } 
-                finally {
+            finally 
+            {
                 hideSpinner(); 
             }
         }
@@ -187,13 +225,14 @@ noticesList.addEventListener('click', async (e) => {
 addNoticeOpenBtn.addEventListener('click', showAddNoticeForm);
 addNoticeCloseBtn.addEventListener('click', hideAddNoticeForm);
 addNoticeModal.addEventListener('click', (e) => {
-    if (e.target.id === 'add-notice-modal') {
+    if (e.target.id === 'add-notice-modal') 
+    {
         hideAddNoticeForm();
     }
 });
+
 logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('currentUser');
     window.location.reload(); 
-
 });
