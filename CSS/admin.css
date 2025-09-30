@@ -38,7 +38,7 @@ input, textarea, select {
     font-size: 1rem; 
 }
 textarea {
-    resize: vertical;
+    height: 300px;
 }
 button {
     background-color: #28a745;
@@ -104,6 +104,10 @@ button:hover {
     width: 100%;
     margin-bottom: 10px;
 }
+.notice-content-text {
+    white-space: pre-wrap;
+    margin-bottom: 10px; 
+}
 .delete-btn {
     width: 100%; 
 }
@@ -167,16 +171,13 @@ button:hover {
         align-items: center;
         justify-content: space-between;
     }
-
     .notice-info {
         width: 80%; 
         margin-bottom: 0;
     }
-    
     .delete-btn {
         width: auto; 
     }
-
     .modal-content {
         max-width: 500px;
     }
