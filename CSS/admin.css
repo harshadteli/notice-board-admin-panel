@@ -11,8 +11,8 @@ body
     line-height: 1.6;
     padding: 10px;
 }
-.form-container, .management-container 
-{
+.form-container, .management-container
+ {
     background: #fff;
     padding: 20px; 
     border-radius: 8px;
@@ -28,21 +28,22 @@ h2
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
-form
+form 
 {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-input, textarea, select
+input, textarea, select 
 {
     width: 100%;
     padding: 12px;
+    min-height: 48px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem; 
 }
-textarea 
+textarea
 {
     height: 300px;
 }
@@ -67,7 +68,7 @@ button:hover
 {
     background-color: #007bff;
 }
-.primary-btn:hover 
+.primary-btn:hover
 {
     background-color: #0056b3;
 }
@@ -150,7 +151,8 @@ button:hover
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    max-width: 90%; 
+    width: 98%; 
+    max-width: 98%; 
     max-height: 90%; 
     overflow-y: auto; 
     animation: fadeIn 0.3s ease-out;
@@ -211,9 +213,8 @@ button:hover
     {
         width: auto; 
     }
-    .modal-content 
-    {
-        max-width: 500px;
+    .modal-content {
+        width: 90%;
+        max-width: 950px;
     }
 }
-
