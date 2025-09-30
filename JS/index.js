@@ -1,4 +1,4 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySlg852_P770a_mBtiS610WtIbtcFe8f3uLk2hYoXb30FqW6E700My6vae977zGgLurw/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgflnWiF28HDKQ8V3IEgOVNcB7db2LxUwh9X0I9_pVqWfYzcPBj4UkWabDzzOrOym3Dw/exec';
 const loginForm = document.getElementById('login-form');
 const loginMessage = document.getElementById('login-message');
 const addNoticeForm = document.getElementById('add-notice-form');
@@ -236,3 +236,4 @@ logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('currentUser');
     window.location.reload(); 
 });
+
